@@ -16,9 +16,54 @@
 ## Languages used 
 ![](https://img.shields.io/badge/Flutter-Dart-00979D)
 
-## Getting Started
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+## Screenshots
+|![](https://raw.githubusercontent.com/ajumalp/flutter_es_utils/main/other/images/screenshots/scr-confirm.jpg)|![](https://raw.githubusercontent.com/ajumalp/flutter_es_utils/main/other/images/screenshots/scr-input.jpg)|![](https://raw.githubusercontent.com/ajumalp/flutter_es_utils/main/other/images/screenshots/scr-list.jpg)|![](https://raw.githubusercontent.com/ajumalp/flutter_es_utils/main/other/images/screenshots/scr-main.jpg)|![](https://raw.githubusercontent.com/ajumalp/flutter_es_utils/main/other/images/screenshots/scr-progress.jpg)|
+|-|-|-|-|-|    
+
+      
+## Confirm Dialog 
+```dart 
+ESButton(
+    'Show Confirm Dialog',
+    onPressed: () => ESMessage.showConfirmDialog(
+        context: context,
+        title: 'Confirm Dialog',
+        message: 'Are you sure?',
+        buttonLeft: 'OK',
+        buttonRight: 'Cancel',
+    ),
+)
+```
+
+## List Dialog 
+```dart 
+final List<bool> varList = [false, false, true, true, false];
+ESButton(
+    'List Dialog',
+    onPressed: () => ESMessage.showListDialog(
+        context: context,
+        suffixText: 'Rows',
+        selectedValue: 20,
+        title: 'Row Count',
+        multiSelectValues: varList,
+        options: const [10, 20, 30, 50, 100],
+    ),
+)
+```
+## Input Dialog 
+```dart
+ESButton(
+    'Show Input Dialog',
+    onPressed: () => ESMessage.showInputDialog(
+        context: context,
+        title: 'Title',
+        defaultValue: 'Default Value',
+        hitText: 'Enter Value',
+        onSubmit: (TextEditingController controller) => ESMessage.showInfoMessage(
+        context,
+        message: controller.text,
+        ),
+    ),
+)
+```
