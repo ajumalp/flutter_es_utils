@@ -27,7 +27,7 @@ class MyHomePage extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 25),
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               ESButton(
                 'Progress Dialog',

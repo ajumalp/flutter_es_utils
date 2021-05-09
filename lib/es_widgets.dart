@@ -5,8 +5,6 @@
  * Date created: 09-May-2021
  */
 
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +29,8 @@ class ESButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TargetPlatform varPlatform = Theme.of(context).platform;
+
     return SizedBox(
       width: width,
       child: ElevatedButton(
@@ -39,7 +39,7 @@ class ESButton extends StatelessWidget {
             horizontal: 30,
             vertical: kIsWeb
                 ? 20
-                : Platform.isAndroid || Platform.isIOS
+                : varPlatform == TargetPlatform.android || varPlatform == TargetPlatform.iOS
                     ? 10
                     : 20,
           ),
