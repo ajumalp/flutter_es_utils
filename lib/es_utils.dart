@@ -6,3 +6,6 @@
  */
 
 library es_utils;
+
+export 'es_widgets.dart';
+export 'es_messages.dart';
