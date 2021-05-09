@@ -18,9 +18,11 @@
 
 
 ## Screenshots
-|![](https://raw.githubusercontent.com/ajumalp/flutter_es_utils/main/other/images/screenshots/scr-confirm.jpg)|![](https://raw.githubusercontent.com/ajumalp/flutter_es_utils/main/other/images/screenshots/scr-input.jpg)|![](https://raw.githubusercontent.com/ajumalp/flutter_es_utils/main/other/images/screenshots/scr-list.jpg)|![](https://raw.githubusercontent.com/ajumalp/flutter_es_utils/main/other/images/screenshots/scr-main.jpg)|![](https://raw.githubusercontent.com/ajumalp/flutter_es_utils/main/other/images/screenshots/scr-progress.jpg)|
-|-|-|-|-|-|    
-
+<img src="https://raw.githubusercontent.com/ajumalp/flutter_es_utils/main/other/images/screenshots/scr-confirm.jpg" height="300">
+<img src="https://raw.githubusercontent.com/ajumalp/flutter_es_utils/main/other/images/screenshots/scr-input.jpg" height="300">
+<img src="https://raw.githubusercontent.com/ajumalp/flutter_es_utils/main/other/images/screenshots/scr-list.jpg" height="300">
+<img src="https://raw.githubusercontent.com/ajumalp/flutter_es_utils/main/other/images/screenshots/scr-main.jpg" height="300">
+<img src="https://raw.githubusercontent.com/ajumalp/flutter_es_utils/main/other/images/screenshots/scr-progress.jpg" height="300">
       
 ## Confirm Dialog 
 ```dart 
