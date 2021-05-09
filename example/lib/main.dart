@@ -1,3 +1,10 @@
+/*
+ * Developed by Ajmal Muhammad P
+ * Contact me @ support@erratums.com
+ * https://erratums.com
+ * Date created: 09-May-2021
+ */
+
 import 'package:es_utils/es_utils.dart';
 import 'package:flutter/material.dart';
 
