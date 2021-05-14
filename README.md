@@ -3,7 +3,7 @@
 ### A Flutter package for few UI components like confirmDialog, inputDialog, Buttons etc 
 
  
-![https://pub.dartlang.org/packages/es_utils](https://img.shields.io/pub/v/es_utils.svg)
+[![](https://img.shields.io/pub/v/es_utils.svg)](https://pub.dartlang.org/packages/es_utils)
 
 
 ## Development tools required 
