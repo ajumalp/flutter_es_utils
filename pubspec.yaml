@@ -1,6 +1,6 @@
 name: es_utils
 description: A Flutter package for few UI components like confirmDialog, inputDialog, Buttons etc 
-version: 1.0.3
+version: 1.0.4
 homepage: https://erratums.com
 repository: https://github.com/ajumalp/flutter_es_utils
 
@@ -9,6 +9,7 @@ environment:
   flutter: ">=2.0.4"
 
 dependencies:
+  url_launcher: ^6.0.3
   flutter:
     sdk: flutter
 

@@ -14,7 +14,10 @@
 [![](https://img.shields.io/badge/Flutter-3.22.0-blue)](https://marketplace.visualstudio.com/items?itemName=Dart-Code.flutter)
 
 ## Languages used 
-![](https://img.shields.io/badge/Flutter-Dart-00979D)
+![](https://img.shields.io/badge/Flutter-Dart-00979D)    
+
+## Flutter Package Dependencies    
+[![](https://img.shields.io/badge/URL_Launcher-v6.0.3-orange)](https://pub.dev/packages/url_launcher) 
 
 
 ## Screenshots

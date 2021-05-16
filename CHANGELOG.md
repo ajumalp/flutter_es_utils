@@ -1,3 +1,8 @@
+## [1.0.4] Release 1.0.4
+
+* Added ESPlatform 
+* Added ESLinkText 
+
 ## [1.0.3] Release 1.0.3
 
 * Removed dart.io to make package support web platform also 

@@ -7,7 +7,30 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+abstract class ESPlatform {
+  /// Get the platform type `TargetPlatform`
+  /// ```dart
+  /// return Theme.of(context).platform
+  /// ```
+  static TargetPlatform targetPlatform(BuildContext context) => Theme.of(context).platform;
+
+  /// can be used to check platform is web or not using [kIsWeb] internally
+  static bool get isWeb => kIsWeb;
+
+  /// Will return true if platform is either Android or iOS
+  static bool isMobile(BuildContext context) {
+    final TargetPlatform varPlatform = targetPlatform(context);
+    return varPlatform == TargetPlatform.android || varPlatform == TargetPlatform.android;
+  }
+
+  /// Will return true if screen size is less than [size].
+  /// [size] is default to 500
+  static bool isSmallScreen(BuildContext context, {final double size = 500}) => MediaQuery.of(context).size.width <= size;
+}
 
 class ESButton extends StatelessWidget {
   final String caption;
@@ -62,6 +85,38 @@ class ESProgressIndicator extends AlertDialog {
               const Text('Please wait ... !'),
               const Spacer(),
               const CircularProgressIndicator(),
+            ],
+          ),
+        );
+}
+
+/// A control to display linked text which is inherited from RichText
+class ESLinkText extends RichText {
+  /// [text] text to be displayed
+  ///
+  /// [prefixText] a non link text to be displayed before linked text
+  ///
+  /// [url] the url to redirect when clicked
+  ///
+  /// [onTap] the function to be triggered when tapped.
+  /// Only work if URL is [url] is not null
+  ESLinkText(String text, {String prefixText = '', String? url, Function()? onTap})
+      : super(
+          text: TextSpan(
+            children: [
+              if (prefixText != '') TextSpan(text: prefixText, style: const TextStyle(color: Colors.grey, fontSize: 16)),
+              TextSpan(
+                text: text,
+                style: const TextStyle(color: Colors.blue, fontSize: 16, fontWeight: FontWeight.bold),
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () {
+                    if (url != null) {
+                      launch(url);
+                    } else if (onTap != null) {
+                      onTap();
+                    }
+                  },
+              ),
             ],
           ),
         );
