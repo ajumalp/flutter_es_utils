@@ -31,7 +31,7 @@ class MyHomePage extends StatelessWidget {
         title: const Text('ES-Utils Demo'),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 25),
+        padding: EdgeInsets.symmetric(horizontal: ESPlatform.isSmallScreen(context) ? 50 : 30),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

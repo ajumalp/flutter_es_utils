@@ -265,12 +265,12 @@ class ESMessage {
       useRootNavigator: false,
       barrierDismissible: barrierDismissible,
       useSafeArea: true,
-      barrierColor: MediaQuery.of(context).platformBrightness == Brightness.dark ? Colors.white54 : Colors.black54,
+      barrierColor: Theme.of(context).brightness == Brightness.dark ? Colors.white54 : Colors.black54,
       builder: (_) => CupertinoAlertDialog(
         title: Column(
           children: <Widget>[
             Text(title ?? '', style: TextStyle(color: Colors.blue)),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
           ],
         ),
         content: content ?? Text(message ?? ''),
