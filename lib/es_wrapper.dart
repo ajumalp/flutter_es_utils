@@ -17,3 +17,7 @@ class ESStringWrapper extends ESGenericWrapper<String> {
   bool get isEmpty => value.isEmpty;
   clear() => value = '';
 }
+
+class ESIntegerWrapper extends ESGenericWrapper<int> {
+  ESIntegerWrapper(int value) : super(value);
+}
