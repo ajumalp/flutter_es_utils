@@ -9,3 +9,4 @@ library es_utils;
 
 export 'es_messages.dart';
 export 'es_widgets.dart';
+export 'es_wrapper.dart';
