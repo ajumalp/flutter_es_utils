@@ -24,7 +24,7 @@ abstract class ESPlatform {
   /// Will return true if platform is either Android or iOS
   static bool isMobile(BuildContext context) {
     final TargetPlatform varPlatform = targetPlatform(context);
-    return varPlatform == TargetPlatform.android || varPlatform == TargetPlatform.android;
+    return varPlatform == TargetPlatform.android || varPlatform == TargetPlatform.iOS;
   }
 
   /// Will return true if screen size is less than [size].
