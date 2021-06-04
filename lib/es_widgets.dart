@@ -69,9 +69,8 @@ class ESButton extends StatelessWidget {
                     : 20,
           ),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          primary: Colors.blue[400],
         ),
-        child: Text(caption, style: const TextStyle(color: Colors.white, fontSize: 18)),
+        child: Text(caption, style: const TextStyle(fontSize: 18)),
         onPressed: () => onPressed(),
       ),
     );
