@@ -175,14 +175,14 @@ class ESMessage {
     controller.selection = TextSelection(baseOffset: 0, extentOffset: controller.text.length);
   }
 
-  static void customDialog({
+  static Future<T?> customDialog<T>({
     required final BuildContext context,
     final String? title,
     final Widget? content,
     final Function()? onSubmit,
     final String okBtnText = 'SUBMIT',
   }) {
-    showDialog(
+    return showDialog<T>(
       context: context,
       builder: (_) => AlertDialog(
         contentPadding: const EdgeInsets.all(6.0),
