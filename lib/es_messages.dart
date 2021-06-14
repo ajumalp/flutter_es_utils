@@ -5,6 +5,7 @@
  * Date created: 09-May-2021
  */
 
+import 'package:es_utils/es_theme.dart';
 import 'package:es_utils/es_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -265,11 +266,11 @@ class ESMessage {
       useRootNavigator: false,
       barrierDismissible: barrierDismissible,
       useSafeArea: true,
-      barrierColor: Theme.of(context).brightness == Brightness.dark ? Colors.white54 : Colors.black54,
+      barrierColor: ESTheme.barrierColor(context),
       builder: (_) => CupertinoAlertDialog(
         title: Column(
           children: <Widget>[
-            Text(title ?? '', style: TextStyle(color: Colors.blue)),
+            Text(title ?? ''),
             const SizedBox(height: 10),
           ],
         ),
@@ -280,7 +281,7 @@ class ESMessage {
               if (autoPop) Navigator.pop(context);
               if (onPressed != null) onPressed(0);
             },
-            child: Text(buttonLeft),
+            child: Text(buttonLeft, style: TextStyle(color: ESTheme.textColor(context))),
           ),
           if (buttonRight != null)
             CupertinoDialogAction(
@@ -288,7 +289,7 @@ class ESMessage {
                 if (autoPop) Navigator.pop(context);
                 if (onPressed != null) onPressed(1);
               },
-              child: Text(buttonRight),
+              child: Text(buttonRight, style: TextStyle(color: ESTheme.textColor(context))),
             ),
         ],
       ),

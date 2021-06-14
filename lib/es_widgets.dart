@@ -66,7 +66,7 @@ class ESButton extends StatelessWidget {
                 ? 20
                 : varPlatform == TargetPlatform.android || varPlatform == TargetPlatform.iOS
                     ? 10
-                    : 20,
+                    : 15,
           ),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         ),
