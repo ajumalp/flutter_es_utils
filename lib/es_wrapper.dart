@@ -21,3 +21,9 @@ class ESStringWrapper extends ESGenericWrapper<String> {
 class ESIntegerWrapper extends ESGenericWrapper<int> {
   ESIntegerWrapper(int value) : super(value);
 }
+
+class ESBooleanWrapper extends ESGenericWrapper<bool> {
+  ESBooleanWrapper(bool value) : super(value);
+  setTrue() => value = true;
+  setFalse() => false;
+}

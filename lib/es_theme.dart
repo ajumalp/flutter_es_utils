@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 
 class ESTheme {
   static Color textColor(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.dark ? Colors.white : Theme.of(context).primaryColor;
+    return Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black;
   }
 
   static Color barrierColor(BuildContext context) {
