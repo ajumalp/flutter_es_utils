@@ -67,7 +67,7 @@ class ESMessage {
                 shrinkWrap: true,
                 itemCount: options.length,
                 itemBuilder: (BuildContext context, int index) {
-                  final String soption = '$prefixText ${options[index].toString()} $suffixText';
+                  final String soption = '$prefixText ${options[index].toString()} $suffixText'.trim();
                   return ListTile(
                     leading: () {
                       if (multiSelect) {
