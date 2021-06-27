@@ -207,12 +207,19 @@ class ESMessage {
   }
 
   /// Shwos a dialog with single button. Default title will be 'Error'.
-  static showErrorMessage(BuildContext context, {String title = 'Error', String? message, bool barrierDismissible = true, Function()? onPressed}) {
+  static showErrorMessage(
+    BuildContext context, {
+    String title = 'Error',
+    String? message,
+    bool barrierDismissible = true,
+    Function()? onPressed,
+  }) {
     return showConfirmDialog(
       context: context,
       title: title,
       message: message,
       buttonLeft: 'OK',
+      barrierDismissible: barrierDismissible,
       onPressed: (aBtnIndex) {
         if (onPressed != null) return onPressed();
       },
@@ -220,12 +227,19 @@ class ESMessage {
   }
 
   /// Shwos a dialog with single button. Default title will be 'Info'.
-  static showInfoMessage(BuildContext context, {String title = 'Info', String? message, bool barrierDismissible = true, Function()? onPressed}) {
+  static showInfoMessage(
+    BuildContext context, {
+    String title = 'Info',
+    String? message,
+    bool barrierDismissible = true,
+    Function()? onPressed,
+  }) {
     return showConfirmDialog(
       context: context,
       title: title,
       message: message,
       buttonLeft: 'OK',
+      barrierDismissible: barrierDismissible,
       onPressed: (aBtnIndex) {
         if (onPressed != null) onPressed();
       },
@@ -259,7 +273,7 @@ class ESMessage {
     final String? buttonRight,
     final bool autoPop = true,
     final Function(int)? onPressed,
-    final bool barrierDismissible = true,
+    final bool barrierDismissible = false,
   }) {
     return showDialog(
       context: context,
