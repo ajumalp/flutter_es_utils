@@ -27,6 +27,13 @@ abstract class ESPlatform {
     return varPlatform == TargetPlatform.android || varPlatform == TargetPlatform.iOS;
   }
 
+  /// Will return true if platform is Windows
+  static bool isWindows(BuildContext context) {
+    if (isWeb) return false;
+    final TargetPlatform varPlatform = targetPlatform(context);
+    return varPlatform == TargetPlatform.windows;
+  }
+
   /// Will return true if screen size is less than [size].
   /// [size] is default to 500
   static bool isSmallScreen(BuildContext context, {final double size = 500}) {

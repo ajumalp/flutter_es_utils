@@ -19,6 +19,30 @@ class ESMessage {
     );
   }
 
+  static Future showModalDialog(
+    BuildContext context, {
+    Widget? content,
+    bool barrierDismissible = false,
+    BoxConstraints constraints = const BoxConstraints(maxWidth: 850, maxHeight: 750),
+  }) {
+    return showDialog(
+      context: context,
+      barrierColor: Colors.white54,
+      barrierDismissible: barrierDismissible,
+      builder: (BuildContext context) {
+        return StatefulBuilder(builder: (BuildContext context, void Function(void Function()) setState) {
+          return Dialog(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            child: Container(
+              constraints: constraints,
+              child: content,
+            ),
+          );
+        });
+      },
+    );
+  }
+
   /// Shows a dialog with list of items to select
   ///
   /// [options] the list of items to display
@@ -42,7 +66,7 @@ class ESMessage {
   /// [okBtnText] title for accept button. Default title is 'Submit'.
   ///
   /// [onSubmit] this function will be called when the okBtnText button is pressed
-  static void showListDialog({
+  static Future showListDialog({
     required final BuildContext context,
     required final List options,
     final String title = '',
@@ -53,9 +77,12 @@ class ESMessage {
     final List<bool> multiSelectValues = const [],
     final String okBtnText = 'Submit',
     final Function(List<bool>)? onSubmit,
+    bool barrierDismissible = false,
+    BoxConstraints constraints = const BoxConstraints(maxWidth: 850, maxHeight: 750),
   }) {
     final bool multiSelect = multiSelectValues.length == options.length;
-    showDialog(
+
+    return showDialog(
       context: context,
       builder: (_) {
         return StatefulBuilder(
