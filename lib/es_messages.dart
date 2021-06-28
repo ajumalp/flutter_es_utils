@@ -214,7 +214,8 @@ class ESMessage {
       context: context,
       builder: (_) => AlertDialog(
         contentPadding: const EdgeInsets.all(6.0),
-        title: Text(title ?? ''),
+        titlePadding: const EdgeInsets.only(top: 20, bottom: 10, right: 15, left: 15),
+        title: Text(title ?? '', style: TextStyle(fontWeight: FontWeight.bold)),
         content: content,
         actions: [
           TextButton(
