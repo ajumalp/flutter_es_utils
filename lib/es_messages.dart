@@ -77,49 +77,54 @@ class ESMessage {
     final List<bool> multiSelectValues = const [],
     final String okBtnText = 'Submit',
     final Function(List<bool>)? onSubmit,
-    bool barrierDismissible = false,
+    bool barrierDismissible = true,
     BoxConstraints constraints = const BoxConstraints(maxWidth: 850, maxHeight: 750),
   }) {
     final bool multiSelect = multiSelectValues.length == options.length;
 
     return showDialog(
       context: context,
+      barrierDismissible: barrierDismissible,
       builder: (_) {
         return StatefulBuilder(
           builder: (context, setState) {
             return AlertDialog(
               contentPadding: const EdgeInsets.all(6.0),
-              title: title == '' ? null : Text(title),
-              content: ListView.builder(
-                shrinkWrap: true,
-                itemCount: options.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final String soption = '$prefixText ${options[index].toString()} $suffixText'.trim();
-                  return ListTile(
-                    leading: () {
-                      if (multiSelect) {
-                        return Checkbox(
-                          value: multiSelectValues[index],
-                          onChanged: (value) {
-                            multiSelectValues[index] = value ?? false;
-                            setState(() {});
-                          },
-                        );
-                      } else {
-                        return null;
-                      }
-                    }(),
-                    selectedTileColor: Colors.black12,
-                    selected: () {
-                      if (multiSelect || selectedValue == null) return false;
-                      return options[index] == selectedValue;
-                    }(),
-                    title: Text(soption),
-                    onTap: () {
-                      if (onSelection != null) onSelection(index, options[index]);
-                    },
-                  );
-                },
+              title: title == '' ? null : Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
+              content: Container(
+                width: 300,
+                constraints: constraints,
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: options.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final String soption = '$prefixText ${options[index].toString()} $suffixText'.trim();
+                    return ListTile(
+                      leading: () {
+                        if (multiSelect) {
+                          return Checkbox(
+                            value: multiSelectValues[index],
+                            onChanged: (value) {
+                              multiSelectValues[index] = value ?? false;
+                              setState(() {});
+                            },
+                          );
+                        } else {
+                          return null;
+                        }
+                      }(),
+                      selectedTileColor: Colors.black12,
+                      selected: () {
+                        if (multiSelect || selectedValue == null) return false;
+                        return options[index] == selectedValue;
+                      }(),
+                      title: Text(soption),
+                      onTap: () {
+                        if (onSelection != null) onSelection(index, options[index]);
+                      },
+                    );
+                  },
+                ),
               ),
               actions: () {
                 if (!multiSelect) return null;
