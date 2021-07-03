@@ -23,7 +23,7 @@ class ESMessage {
     BuildContext context, {
     Widget? content,
     bool barrierDismissible = false,
-    BoxConstraints constraints = const BoxConstraints(maxWidth: 850, maxHeight: 750),
+    BoxConstraints? constraints = const BoxConstraints(maxWidth: 850, maxHeight: 750),
   }) {
     return showDialog(
       context: context,
@@ -276,6 +276,35 @@ class ESMessage {
       onPressed: (aBtnIndex) {
         if (onPressed != null) onPressed();
       },
+    );
+  }
+
+  static showQuestionMessage({
+    required BuildContext context,
+    final String? title,
+    final String? message,
+    final Widget? content,
+    final bool autoPop = true,
+    final Function? onAccept,
+    final Function? onReject,
+    final bool barrierDismissible = true,
+  }) {
+    return showConfirmDialog(
+      context: context,
+      buttonLeft: 'No',
+      buttonRight: 'Yes',
+      title: title,
+      message: message,
+      content: content,
+      autoPop: autoPop,
+      onPressed: (index) {
+        if (index == 1 && onAccept != null) {
+          onAccept();
+        } else if (index == 0 && onReject != null) {
+          onReject();
+        }
+      },
+      barrierDismissible: barrierDismissible,
     );
   }
 
