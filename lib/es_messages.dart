@@ -9,6 +9,7 @@ import 'package:es_utils/es_theme.dart';
 import 'package:es_utils/es_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class ESMessage {
   /// A CircularProgressIndicator can be used to display while processing in background
@@ -30,15 +31,13 @@ class ESMessage {
       barrierColor: Colors.white54,
       barrierDismissible: barrierDismissible,
       builder: (BuildContext context) {
-        return StatefulBuilder(builder: (BuildContext context, void Function(void Function()) setState) {
-          return Dialog(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            child: Container(
-              constraints: constraints,
-              child: content,
-            ),
-          );
-        });
+        return Dialog(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          child: Container(
+            constraints: constraints,
+            child: content,
+          ),
+        );
       },
     );
   }
@@ -210,18 +209,24 @@ class ESMessage {
 
   static Future<T?> customDialog<T>({
     required final BuildContext context,
+    required final Widget content,
     final String? title,
-    final Widget? content,
     final Function()? onSubmit,
     final String okBtnText = 'SUBMIT',
   }) {
+    void _doSubmit() {
+      Navigator.of(context).pop();
+      if (onSubmit != null) onSubmit();
+    }
+
     return showDialog<T>(
       context: context,
-      builder: (_) => AlertDialog(
+      builder: (BuildContext context) => AlertDialog(
         contentPadding: const EdgeInsets.all(6.0),
         titlePadding: const EdgeInsets.only(top: 20, bottom: 10, right: 15, left: 15),
         title: Text(title ?? '', style: TextStyle(fontWeight: FontWeight.bold)),
         content: content,
+        actionsOverflowDirection: VerticalDirection.down,
         actions: [
           TextButton(
             child: const Text('CANCEL'),
@@ -229,10 +234,7 @@ class ESMessage {
           ),
           TextButton(
             child: Text(okBtnText),
-            onPressed: () {
-              Navigator.of(context).pop();
-              if (onSubmit != null) onSubmit();
-            },
+            onPressed: () => _doSubmit(),
           ),
         ],
       ),
@@ -343,31 +345,41 @@ class ESMessage {
       barrierDismissible: barrierDismissible,
       useSafeArea: true,
       barrierColor: ESTheme.barrierColor(context),
-      builder: (_) => CupertinoAlertDialog(
-        title: Column(
-          children: <Widget>[
-            Text(title ?? ''),
-            const SizedBox(height: 10),
-          ],
-        ),
-        content: content ?? Text(message ?? ''),
-        actions: [
-          CupertinoDialogAction(
-            onPressed: () {
-              if (autoPop) Navigator.pop(context);
-              if (onPressed != null) onPressed(0);
-            },
-            child: Text(buttonLeft, style: TextStyle(color: ESTheme.textColor(context))),
+      builder: (BuildContext context) => RawKeyboardListener(
+        autofocus: true,
+        focusNode: FocusNode(),
+        onKey: (event) {
+          if (event.isKeyPressed(LogicalKeyboardKey.enter) || event.isKeyPressed(LogicalKeyboardKey.numpadEnter)) {
+            if (autoPop) Navigator.pop(context);
+            if (onPressed != null) onPressed(1);
+          }
+        },
+        child: CupertinoAlertDialog(
+          title: Column(
+            children: <Widget>[
+              Text(title ?? ''),
+              const SizedBox(height: 10),
+            ],
           ),
-          if (buttonRight != null)
+          content: content ?? Text(message ?? ''),
+          actions: [
             CupertinoDialogAction(
               onPressed: () {
                 if (autoPop) Navigator.pop(context);
-                if (onPressed != null) onPressed(1);
+                if (onPressed != null) onPressed(0);
               },
-              child: Text(buttonRight, style: TextStyle(color: ESTheme.textColor(context))),
+              child: Text(buttonLeft, style: TextStyle(color: ESTheme.textColor(context))),
             ),
-        ],
+            if (buttonRight != null)
+              CupertinoDialogAction(
+                onPressed: () {
+                  if (autoPop) Navigator.pop(context);
+                  if (onPressed != null) onPressed(1);
+                },
+                child: Text(buttonRight, style: TextStyle(fontWeight: FontWeight.w600, color: ESTheme.textColor(context))),
+              ),
+          ],
+        ),
       ),
     );
   }
