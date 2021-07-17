@@ -363,20 +363,26 @@ class ESMessage {
           ),
           content: content ?? Text(message ?? ''),
           actions: [
-            CupertinoDialogAction(
-              onPressed: () {
-                if (autoPop) Navigator.pop(context);
-                if (onPressed != null) onPressed(0);
-              },
-              child: Text(buttonLeft, style: TextStyle(color: ESTheme.textColor(context))),
-            ),
-            if (buttonRight != null)
-              CupertinoDialogAction(
+            Tooltip(
+              message: '[Esc]',
+              child: CupertinoDialogAction(
                 onPressed: () {
                   if (autoPop) Navigator.pop(context);
-                  if (onPressed != null) onPressed(1);
+                  if (onPressed != null) onPressed(0);
                 },
-                child: Text(buttonRight, style: TextStyle(fontWeight: FontWeight.w600, color: ESTheme.textColor(context))),
+                child: Text(buttonLeft, style: TextStyle(color: ESTheme.textColor(context))),
+              ),
+            ),
+            if (buttonRight != null)
+              Tooltip(
+                message: '[Press Enter]',
+                child: CupertinoDialogAction(
+                  onPressed: () {
+                    if (autoPop) Navigator.pop(context);
+                    if (onPressed != null) onPressed(1);
+                  },
+                  child: Text(buttonRight, style: TextStyle(fontWeight: FontWeight.w600, color: ESTheme.textColor(context))),
+                ),
               ),
           ],
         ),

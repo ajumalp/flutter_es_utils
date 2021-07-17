@@ -36,8 +36,8 @@ abstract class ESPlatform {
 
   /// Will return true if screen size is less than [size].
   /// [size] is default to 500
-  static bool isSmallScreen(BuildContext context, {final double size = 500}) {
-    return MediaQuery.of(context).size.width <= size;
+  static bool isSmallScreen(BuildContext context, {final double width = 500}) {
+    return MediaQuery.of(context).size.width <= width;
   }
 }
 
