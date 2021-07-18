@@ -211,7 +211,9 @@ class ESMessage {
     required final BuildContext context,
     required final Widget content,
     final String? title,
+    final bool barrierDismissible = true,
     final Function()? onSubmit,
+    final Function()? onCancel,
     final String okBtnText = 'SUBMIT',
   }) {
     void _doSubmit() {
@@ -221,6 +223,7 @@ class ESMessage {
 
     return showDialog<T>(
       context: context,
+      barrierDismissible: barrierDismissible,
       builder: (BuildContext context) => AlertDialog(
         contentPadding: const EdgeInsets.all(6.0),
         titlePadding: const EdgeInsets.only(top: 20, bottom: 10, right: 15, left: 15),
@@ -230,7 +233,10 @@ class ESMessage {
         actions: [
           TextButton(
             child: const Text('CANCEL'),
-            onPressed: Navigator.of(context).pop,
+            onPressed: () {
+              Navigator.of(context).pop();
+              if (onCancel != null) onCancel();
+            },
           ),
           TextButton(
             child: Text(okBtnText),
