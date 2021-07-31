@@ -253,7 +253,7 @@ class ESMessage {
     BuildContext context, {
     String title = 'Error',
     String? message,
-    bool barrierDismissible = false,
+    bool barrierDismissible = true,
     Function()? onPressed,
   }) {
     return showConfirmDialog(
@@ -273,7 +273,7 @@ class ESMessage {
     BuildContext context, {
     String title = 'Info',
     String? message,
-    bool barrierDismissible = false,
+    bool barrierDismissible = true,
     Function()? onPressed,
   }) {
     return showConfirmDialog(
