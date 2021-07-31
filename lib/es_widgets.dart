@@ -73,7 +73,7 @@ class ESButton extends StatelessWidget {
                 ? 20
                 : varPlatform == TargetPlatform.android || varPlatform == TargetPlatform.iOS
                     ? 10
-                    : 15,
+                    : 20,
           ),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         ),
@@ -115,7 +115,7 @@ class ESLinkText extends RichText {
               if (prefixText != '') TextSpan(text: prefixText, style: const TextStyle(color: Colors.grey, fontSize: 16)),
               TextSpan(
                 text: text,
-                style: const TextStyle(color: Colors.blue, fontSize: 16, fontWeight: FontWeight.bold),
+                style: const TextStyle(color: Colors.lightBlue, fontSize: 16, fontWeight: FontWeight.bold),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
                     if (url != null) {
