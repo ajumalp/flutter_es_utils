@@ -27,6 +27,20 @@ abstract class ESPlatform {
     return varPlatform == TargetPlatform.android || varPlatform == TargetPlatform.iOS;
   }
 
+  /// Will return true if platform is Android
+  static bool isAndroid(BuildContext context) {
+    if (isWeb) return false;
+    final TargetPlatform varPlatform = targetPlatform(context);
+    return varPlatform == TargetPlatform.android;
+  }
+
+  /// Will return true if platform is iOS
+  static bool isiOS(BuildContext context) {
+    if (isWeb) return false;
+    final TargetPlatform varPlatform = targetPlatform(context);
+    return varPlatform == TargetPlatform.iOS;
+  }
+
   /// Will return true if platform is Windows
   static bool isWindows(BuildContext context) {
     if (isWeb) return false;
