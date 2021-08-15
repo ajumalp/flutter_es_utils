@@ -12,43 +12,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class ESMessage {
-  static BuildContext? _loadingMessageContext;
-
   /// A CircularProgressIndicator can be used to display while processing in background
   static Scaffold showProgressIndicator({required String title, bool centerTitle = false}) {
     return Scaffold(
       appBar: AppBar(title: Text(title), centerTitle: centerTitle),
       body: ESProgressIndicator(),
     );
-  }
-
-  static void popLoadingDialog() {
-    if (_loadingMessageContext == null) return;
-    Navigator.of(_loadingMessageContext!, rootNavigator: false).pop();
-    _loadingMessageContext = null;
-  }
-
-  static void pushLoadingDialog(
-    final BuildContext context, {
-    final String message = 'Please wait ... !',
-  }) {
-    if (_loadingMessageContext != null) return;
-
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (_) => CupertinoAlertDialog(
-        content: Row(
-          children: <Widget>[
-            const CircularProgressIndicator(),
-            const SizedBox(width: 30),
-            Text(message),
-          ],
-        ),
-      ),
-    );
-
-    _loadingMessageContext = context;
   }
 
   static Future showModalDialog(
