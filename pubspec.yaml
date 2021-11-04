@@ -5,11 +5,11 @@ homepage: https://erratums.com
 repository: https://github.com/ajumalp/flutter_es_utils
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
-  flutter: ">=2.0.4"
+  sdk: ">=2.14.0 <3.0.0"
+  flutter: ">=2.5.3"
 
 dependencies:
-  url_launcher: ^6.0.3
+  url_launcher: any
   flutter:
     sdk: flutter
 
