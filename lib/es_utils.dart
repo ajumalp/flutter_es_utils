@@ -3,7 +3,6 @@
  * Contact me @ support@erratums.com
  * https://erratums.com
  * Date created: 09-May-2021
- * test
  */
 
 library es_utils;
