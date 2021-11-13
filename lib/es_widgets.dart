@@ -126,7 +126,7 @@ class ESLinkText extends RichText {
       : super(
           text: TextSpan(
             children: [
-              if (prefixText != '') TextSpan(text: prefixText, style: const TextStyle(color: Colors.grey, fontSize: 16)),
+              if (prefixText != '') TextSpan(text: prefixText, style: const TextStyle(color: Colors.white, fontSize: 16)),
               TextSpan(
                 text: text,
                 style: const TextStyle(color: Colors.lightBlue, fontSize: 16, fontWeight: FontWeight.bold),
