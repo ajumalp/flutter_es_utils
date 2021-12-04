@@ -20,6 +20,17 @@ class ESMessage {
     );
   }
 
+  static CupertinoAlertDialog showProgressBar({final String title = 'Processing', final String message = 'Please wait ... !'}) {
+    return CupertinoAlertDialog(
+      title: Text(title),
+      content: Row(children: <Widget>[
+        const CircularProgressIndicator(),
+        const SizedBox(width: 30),
+        Text(message),
+      ]),
+    );
+  }
+
   static Future showModalDialog(
     BuildContext context, {
     Widget? content,
@@ -89,7 +100,7 @@ class ESMessage {
           builder: (context, setState) {
             return AlertDialog(
               contentPadding: const EdgeInsets.all(6.0),
-              title: title == '' ? null : Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
+              title: title == '' ? null : Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
               content: Container(
                 width: 300,
                 constraints: constraints,
@@ -179,11 +190,11 @@ class ESMessage {
           children: <Widget>[
             const SizedBox(height: 15),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 5),
               child: TextField(
                 decoration: InputDecoration(
                   isDense: true,
-                  border: const OutlineInputBorder(borderRadius: const BorderRadius.all(const Radius.circular(10))),
+                  border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
                   filled: false,
                   hintStyle: const TextStyle(color: Colors.grey),
                   hintText: hitText ?? '',
@@ -228,7 +239,7 @@ class ESMessage {
       builder: (BuildContext context) => AlertDialog(
         contentPadding: const EdgeInsets.all(6.0),
         titlePadding: const EdgeInsets.only(top: 20, bottom: 10, right: 15, left: 15),
-        title: Text(title ?? '', style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Text(title ?? '', style: const TextStyle(fontWeight: FontWeight.bold)),
         content: content,
         actionsOverflowDirection: VerticalDirection.down,
         actions: [

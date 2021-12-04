@@ -6,5 +6,5 @@
  */
 
 extension ESDoubleEx on double {
-  String toStringAsFixedNoZero(final int n) => double.parse(this.toStringAsFixed(n)).toString();
+  String toStringAsFixedNoZero(final int n) => double.parse(toStringAsFixed(n)).toString();
 }

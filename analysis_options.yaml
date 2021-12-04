@@ -1,0 +1,7 @@
+
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    camel_case_extensions: false
+    constant_identifier_names: false

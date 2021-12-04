@@ -71,7 +71,7 @@ class ESButton extends StatelessWidget {
   /// [onPressed] is the event triggerd when button is pressed/clicked
   ///
   /// [width] to set width of the button. Default to full width of parent
-  const ESButton(this.caption, {required this.onPressed, this.width = double.infinity});
+  const ESButton(this.caption, {Key? key, required this.onPressed, this.width = double.infinity}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -100,13 +100,14 @@ class ESButton extends StatelessWidget {
 
 class ESProgressIndicator extends AlertDialog {
   /// A CircularProgressIndicator can be used to display while processing in background
-  ESProgressIndicator()
+  ESProgressIndicator({Key? key})
       : super(
+          key: key,
           content: Row(
-            children: <Widget>[
-              const Text('Please wait ... !'),
-              const Spacer(),
-              const CircularProgressIndicator(),
+            children: const <Widget>[
+              Text('Please wait ... !'),
+              Spacer(),
+              CircularProgressIndicator(),
             ],
           ),
         );
@@ -122,8 +123,9 @@ class ESLinkText extends RichText {
   ///
   /// [onTap] the function to be triggered when tapped.
   /// Only work if URL is [url] is not null
-  ESLinkText(String text, {String prefixText = '', String? url, Function()? onTap})
+  ESLinkText(String text, {Key? key, String prefixText = '', String? url, Function()? onTap})
       : super(
+          key: key,
           text: TextSpan(
             children: [
               if (prefixText != '') TextSpan(text: prefixText, style: const TextStyle(color: Colors.white, fontSize: 16)),
