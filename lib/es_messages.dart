@@ -174,6 +174,7 @@ class ESMessage {
     final String? hitText,
     final Function(TextEditingController)? onSubmit,
     final String? defaultValue,
+    final String? suffixText,
   }) {
     final TextEditingController controller = TextEditingController(text: defaultValue);
 
@@ -199,6 +200,7 @@ class ESMessage {
                   hintStyle: const TextStyle(color: Colors.grey),
                   hintText: hitText ?? '',
                   labelText: hitText ?? '',
+                  suffixText: suffixText,
                   suffixIcon: () {
                     return InkWell(
                       child: const Icon(Icons.cancel),
