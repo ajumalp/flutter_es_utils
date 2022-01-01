@@ -1,3 +1,9 @@
+## [1.0.5+33] Release 1.0.5
+
+* Added showModalDialog
+* Added showListDialog
+* Fixed many issues 
+
 ## [1.0.4] Release 1.0.4
 
 * Added ESPlatform 
