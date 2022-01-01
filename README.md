@@ -7,17 +7,17 @@
 
 
 ## Development tools required 
-[![](https://img.shields.io/badge/Visual%20Studio%20Code-1.56-blue)](https://code.visualstudio.com/)
+[![](https://img.shields.io/badge/Visual%20Studio%20Code-1.63-blue)](https://code.visualstudio.com/)
 
 ## Visual Studio Code Extensions used 
-[![](https://img.shields.io/badge/Dart-3.22.0-blue)](https://marketplace.visualstudio.com/items?itemName=Dart-Code.dart-code)
-[![](https://img.shields.io/badge/Flutter-3.22.0-blue)](https://marketplace.visualstudio.com/items?itemName=Dart-Code.flutter)
+[![](https://img.shields.io/badge/Dart-2.12.0-blue)](https://marketplace.visualstudio.com/items?itemName=Dart-Code.dart-code)
+[![](https://img.shields.io/badge/Flutter-2.8.0-blue)](https://marketplace.visualstudio.com/items?itemName=Dart-Code.flutter)
 
 ## Languages used 
 ![](https://img.shields.io/badge/Flutter-Dart-00979D)    
 
 ## Flutter Package Dependencies    
-[![](https://img.shields.io/badge/URL_Launcher-v6.0.3-orange)](https://pub.dev/packages/url_launcher) 
+[![](https://img.shields.io/badge/URL_Launcher-v6.0.17-orange)](https://pub.dev/packages/url_launcher/versions/6.0.17) 
 
 
 ## Screenshots

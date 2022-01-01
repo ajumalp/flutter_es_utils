@@ -130,7 +130,9 @@ class ESMessage {
                       }(),
                       title: Text(soption),
                       onTap: () {
-                        if (onSelection != null) onSelection(index, options[index]);
+                        if (onSelection != null) {
+                          onSelection(index, options[index]);
+                        }
                       },
                     );
                   },
