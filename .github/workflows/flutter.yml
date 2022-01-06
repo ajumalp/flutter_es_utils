@@ -32,7 +32,7 @@ jobs:
       # - run: flutter format --set-exit-if-changed .      
 
       # Statically analyze the Dart code for any errors.
-      - run: flutter analyze .
+      - run: flutter analyze
 
       # Run 
       - run: flutter doctor -v
