@@ -4,6 +4,7 @@
 
  
 [![](https://img.shields.io/pub/v/es_utils.svg)](https://pub.dartlang.org/packages/es_utils)
+[![Flutter](https://github.com/ajumalp/flutter_es_utils/actions/workflows/flutter-ci.yml/badge.svg?branch=main)](https://github.com/ajumalp/flutter_es_utils/actions/workflows/flutter.yml)
 
 
 ## Development tools required 

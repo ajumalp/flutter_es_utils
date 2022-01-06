@@ -1,4 +1,4 @@
-## [1.0.8] Release 1.0.8
+## [1.0.9] Release 1.0.9
 
 * Added showModalDialog
 * Added showListDialog

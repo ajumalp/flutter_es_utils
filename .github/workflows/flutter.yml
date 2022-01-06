@@ -1,4 +1,4 @@
-name: Flutter CI
+name: Flutter
 
 # This workflow is triggered on pushes to the repository.
 
@@ -28,8 +28,14 @@ jobs:
       # Get flutter dependencies.
       - run: flutter pub get
 
+      # Check for any formatting issues in the code.
+      # - run: flutter format --set-exit-if-changed .      
+
       # Statically analyze the Dart code for any errors.
       - run: flutter analyze .
+
+      # Run 
+      - run: flutter doctor -v
 
       # Run widget tests for our flutter project.
       - run: flutter test
