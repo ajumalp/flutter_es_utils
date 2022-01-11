@@ -12,6 +12,7 @@ jobs:
   build:
     # This job will run on ubuntu virtual machine
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       # Setup Java environment in order to build the Android app.
       - uses: actions/checkout@v1
