@@ -8,6 +8,7 @@
 library es_utils;
 
 import 'dart:math';
+import 'package:http/http.dart' as httpClient;
 
 export 'es_base_extensions.dart';
 export 'es_messages.dart';
@@ -22,4 +23,6 @@ class ESUtils {
       Iterable.generate(length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))),
     );
   }
+
+  static Future<String> readFile(final String url) => httpClient.read(Uri.parse(url));
 }
