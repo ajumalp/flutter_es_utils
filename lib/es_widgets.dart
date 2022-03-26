@@ -82,7 +82,7 @@ class ESButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           padding: EdgeInsets.symmetric(
             horizontal: 30,
-            vertical: (varPlatform == TargetPlatform.android || varPlatform == TargetPlatform.iOS) ? 5 : 15,
+            vertical: (varPlatform == TargetPlatform.android || varPlatform == TargetPlatform.iOS) ? 8 : 18,
           ),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         ),
