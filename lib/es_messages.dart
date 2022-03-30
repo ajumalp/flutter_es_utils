@@ -226,17 +226,11 @@ class ESMessage {
     required final BuildContext context,
     required final Widget content,
     final String? title,
-    final bool autoPop = true,
     final bool barrierDismissible = true,
     final Function()? onSubmit,
     final Function()? onCancel,
     final String okBtnText = 'SUBMIT',
   }) {
-    void _doSubmit() {
-      if (autoPop) Navigator.of(context).pop();
-      if (onSubmit != null) onSubmit();
-    }
-
     return showDialog<T>(
       context: context,
       barrierDismissible: barrierDismissible,
@@ -256,7 +250,10 @@ class ESMessage {
           ),
           TextButton(
             child: Text(okBtnText),
-            onPressed: () => _doSubmit(),
+            onPressed: () {
+              Navigator.of(context).pop();
+              if (onSubmit != null) onSubmit();
+            },
           ),
         ],
       ),
