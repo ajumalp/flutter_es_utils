@@ -183,7 +183,7 @@ class ESMessage {
     ESMessage.customDialog(
       context: context,
       title: title,
-      onSubmit: () {
+      onSubmit: (context) {
         if (onSubmit != null) onSubmit(controller);
       },
       content: () {
@@ -226,8 +226,9 @@ class ESMessage {
     required final BuildContext context,
     required final Widget content,
     final String? title,
+    final bool autoPop = true,
     final bool barrierDismissible = true,
-    final Function()? onSubmit,
+    final Function(BuildContext context)? onSubmit,
     final Function()? onCancel,
     final String okBtnText = 'SUBMIT',
   }) {
@@ -251,8 +252,8 @@ class ESMessage {
           TextButton(
             child: Text(okBtnText),
             onPressed: () {
-              Navigator.of(context).pop();
-              if (onSubmit != null) onSubmit();
+              if (autoPop) Navigator.of(context).pop();
+              if (onSubmit != null) onSubmit(context);
             },
           ),
         ],
