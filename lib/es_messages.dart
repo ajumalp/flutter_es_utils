@@ -174,6 +174,7 @@ class ESMessage {
     required final BuildContext context,
     required final String title,
     final String? hitText,
+    final String? message,
     final Function(TextEditingController)? onSubmit,
     final String? defaultValue,
     final String? suffixText,
@@ -191,6 +192,8 @@ class ESMessage {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
+            if (message != null) const SizedBox(height: 15),
+            if (message != null) Text(message),
             const SizedBox(height: 15),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 5),
