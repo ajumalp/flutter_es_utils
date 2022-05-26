@@ -234,6 +234,7 @@ class ESMessage {
     final Function(BuildContext context)? onSubmit,
     final Function()? onCancel,
     final String okBtnText = 'SUBMIT',
+    final bool hideCancelButton = false,
   }) {
     return showDialog<T>(
       context: context,
@@ -245,13 +246,14 @@ class ESMessage {
         content: content,
         actionsOverflowDirection: VerticalDirection.down,
         actions: [
-          TextButton(
-            child: const Text('CANCEL'),
-            onPressed: () {
-              Navigator.of(context).pop();
-              if (onCancel != null) onCancel();
-            },
-          ),
+          if (!hideCancelButton)
+            TextButton(
+              child: const Text('CANCEL'),
+              onPressed: () {
+                Navigator.of(context).pop();
+                if (onCancel != null) onCancel();
+              },
+            ),
           TextButton(
             child: Text(okBtnText),
             onPressed: () {
