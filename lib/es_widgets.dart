@@ -8,7 +8,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 abstract class ESPlatform {
   /// Get the platform type `TargetPlatform`
@@ -130,7 +130,7 @@ class ESLinkText extends RichText {
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
                     if (url != null) {
-                      launch(url);
+                      launchUrlString(url);
                     } else if (onTap != null) {
                       onTap();
                     }
