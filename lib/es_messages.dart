@@ -239,29 +239,42 @@ class ESMessage {
     return showDialog<T>(
       context: context,
       barrierDismissible: barrierDismissible,
-      builder: (BuildContext context) => AlertDialog(
-        contentPadding: const EdgeInsets.all(6.0),
-        titlePadding: const EdgeInsets.only(top: 20, bottom: 10, right: 15, left: 15),
-        title: Text(title ?? '', style: const TextStyle(fontWeight: FontWeight.bold)),
-        content: content,
-        actionsOverflowDirection: VerticalDirection.down,
-        actions: [
-          if (!hideCancelButton)
+      builder: (BuildContext context) => RawKeyboardListener(
+        autofocus: true,
+        focusNode: FocusNode(),
+        onKey: (event) {
+          if (event.isKeyPressed(LogicalKeyboardKey.enter) || event.isKeyPressed(LogicalKeyboardKey.numpadEnter)) {
+            if (autoPop) Navigator.pop(context);
+            if (onSubmit != null) onSubmit(context);
+          } else if (event.isKeyPressed(LogicalKeyboardKey.escape)) {
+            Navigator.of(context).pop();
+            if (onCancel != null) onCancel();
+          }
+        },
+        child: AlertDialog(
+          contentPadding: const EdgeInsets.all(6.0),
+          titlePadding: const EdgeInsets.only(top: 20, bottom: 10, right: 15, left: 15),
+          title: Text(title ?? '', style: const TextStyle(fontWeight: FontWeight.bold)),
+          content: content,
+          actionsOverflowDirection: VerticalDirection.down,
+          actions: [
+            if (!hideCancelButton)
+              TextButton(
+                child: const Tooltip(message: '[Esc]', child: Text('CANCEL')),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  if (onCancel != null) onCancel();
+                },
+              ),
             TextButton(
-              child: const Text('CANCEL'),
+              child: Tooltip(message: '[Press Enter]', child: Text(okBtnText)),
               onPressed: () {
-                Navigator.of(context).pop();
-                if (onCancel != null) onCancel();
+                if (autoPop) Navigator.of(context).pop();
+                if (onSubmit != null) onSubmit(context);
               },
             ),
-          TextButton(
-            child: Text(okBtnText),
-            onPressed: () {
-              if (autoPop) Navigator.of(context).pop();
-              if (onSubmit != null) onSubmit(context);
-            },
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
