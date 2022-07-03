@@ -118,15 +118,21 @@ class ESLinkText extends RichText {
   ///
   /// [onTap] the function to be triggered when tapped.
   /// Only work if URL is [url] is not null
-  ESLinkText(String text, {Key? key, String prefixText = '', String? url, Function()? onTap})
-      : super(
+  ESLinkText(
+    String text, {
+    Key? key,
+    String prefixText = '',
+    String? url,
+    Function()? onTap,
+    double fontSize = 16,
+  }) : super(
           key: key,
           text: TextSpan(
             children: [
-              if (prefixText != '') TextSpan(text: prefixText, style: const TextStyle(color: Colors.white, fontSize: 16)),
+              if (prefixText != '') TextSpan(text: prefixText, style: TextStyle(color: Colors.white, fontSize: fontSize)),
               TextSpan(
                 text: text,
-                style: const TextStyle(color: Colors.lightBlue, fontSize: 16, fontWeight: FontWeight.bold),
+                style: TextStyle(color: Colors.lightBlue, fontSize: fontSize, fontWeight: FontWeight.bold),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
                     if (url != null) {
