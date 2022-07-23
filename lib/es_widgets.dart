@@ -5,6 +5,7 @@
  * Date created: 09-May-2021
  */
 
+import 'package:es_utils/es_three_arched_circle.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -95,14 +96,20 @@ class ESButton extends StatelessWidget {
 
 class ESProgressIndicator extends AlertDialog {
   /// A CircularProgressIndicator can be used to display while processing in background
-  ESProgressIndicator({Key? key})
-      : super(
+
+  ESProgressIndicator({
+    Key? key,
+    String? status,
+  }) : super(
+          elevation: status != null ? 2 : 0,
+          backgroundColor: status == null ? Colors.transparent : null,
           key: key,
-          content: Row(
-            children: const <Widget>[
-              Text('Please wait ... !'),
-              Spacer(),
-              CircularProgressIndicator(),
+          content: Wrap(
+            runSpacing: 20,
+            alignment: WrapAlignment.center,
+            children: [
+              const ESThreeArchedCircle(size: 50),
+              if (status != null) Text(status),
             ],
           ),
         );
