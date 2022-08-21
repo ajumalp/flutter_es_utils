@@ -74,10 +74,10 @@ class _ESThreeArchedCircleState extends State<ESThreeArchedCircle> with SingleTi
     final double size = widget.size;
     final double ringWidth = size * 0.08;
 
-    final CurvedAnimation _firstRotationInterval = CurvedAnimation(parent: _animationController, curve: const Interval(0.0, 0.5, curve: Curves.easeInOut));
-    final CurvedAnimation _firstArchInterval = CurvedAnimation(parent: _animationController, curve: const Interval(0.0, 0.4, curve: Curves.easeInOut));
-    final CurvedAnimation _secondRotationInterval = CurvedAnimation(parent: _animationController, curve: const Interval(0.5, 1.0, curve: Curves.easeInOut));
-    final CurvedAnimation _secondArchInterval = CurvedAnimation(parent: _animationController, curve: const Interval(0.5, 0.9, curve: Curves.easeInOut));
+    final CurvedAnimation firstRotationInterval = CurvedAnimation(parent: _animationController, curve: const Interval(0.0, 0.5, curve: Curves.easeInOut));
+    final CurvedAnimation firstArchInterval = CurvedAnimation(parent: _animationController, curve: const Interval(0.0, 0.4, curve: Curves.easeInOut));
+    final CurvedAnimation secondRotationInterval = CurvedAnimation(parent: _animationController, curve: const Interval(0.5, 1.0, curve: Curves.easeInOut));
+    final CurvedAnimation secondArchInterval = CurvedAnimation(parent: _animationController, curve: const Interval(0.5, 0.9, curve: Curves.easeInOut));
 
     return Container(
       padding: EdgeInsets.all(size * 0.04),
@@ -88,7 +88,7 @@ class _ESThreeArchedCircleState extends State<ESThreeArchedCircle> with SingleTi
         builder: (_, __) {
           return _animationController.value <= 0.5
               ? Transform.rotate(
-                  angle: Tween<double>(begin: 0, end: 4 * math.pi / 3).animate(_firstRotationInterval).value,
+                  angle: Tween<double>(begin: 0, end: 4 * math.pi / 3).animate(firstRotationInterval).value,
                   child: Stack(
                     alignment: Alignment.center,
                     children: <Widget>[
@@ -97,21 +97,21 @@ class _ESThreeArchedCircleState extends State<ESThreeArchedCircle> with SingleTi
                         size: size,
                         strokeWidth: ringWidth,
                         startAngle: 7 * math.pi / 6,
-                        endAngle: Tween<double>(begin: 2 * math.pi / 3 - _kGapAngle, end: _kMinAngle).animate(_firstArchInterval).value,
+                        endAngle: Tween<double>(begin: 2 * math.pi / 3 - _kGapAngle, end: _kMinAngle).animate(firstArchInterval).value,
                       ),
                       Arc.draw(
                         color: color,
                         size: size,
                         strokeWidth: ringWidth,
                         startAngle: math.pi / 2,
-                        endAngle: Tween<double>(begin: 2 * math.pi / 3 - _kGapAngle, end: _kMinAngle).animate(_firstArchInterval).value,
+                        endAngle: Tween<double>(begin: 2 * math.pi / 3 - _kGapAngle, end: _kMinAngle).animate(firstArchInterval).value,
                       ),
                       Arc.draw(
                         color: color,
                         size: size,
                         strokeWidth: ringWidth,
                         startAngle: -math.pi / 6,
-                        endAngle: Tween<double>(begin: 2 * math.pi / 3 - _kGapAngle, end: _kMinAngle).animate(_firstArchInterval).value,
+                        endAngle: Tween<double>(begin: 2 * math.pi / 3 - _kGapAngle, end: _kMinAngle).animate(firstArchInterval).value,
                       ),
                     ],
                   ),
@@ -120,7 +120,7 @@ class _ESThreeArchedCircleState extends State<ESThreeArchedCircle> with SingleTi
                   angle: Tween<double>(
                     begin: 4 * math.pi / 3,
                     end: (4 * math.pi / 3) + (2 * math.pi / 3),
-                  ).animate(_secondRotationInterval).value,
+                  ).animate(secondRotationInterval).value,
                   child: Stack(
                     alignment: Alignment.center,
                     children: <Widget>[
@@ -129,21 +129,21 @@ class _ESThreeArchedCircleState extends State<ESThreeArchedCircle> with SingleTi
                         size: size,
                         strokeWidth: ringWidth,
                         startAngle: 7 * math.pi / 6,
-                        endAngle: Tween<double>(begin: _kMinAngle, end: 2 * math.pi / 3 - _kGapAngle).animate(_secondArchInterval).value,
+                        endAngle: Tween<double>(begin: _kMinAngle, end: 2 * math.pi / 3 - _kGapAngle).animate(secondArchInterval).value,
                       ),
                       Arc.draw(
                         color: color,
                         size: size,
                         strokeWidth: ringWidth,
                         startAngle: math.pi / 2,
-                        endAngle: Tween<double>(begin: _kMinAngle, end: 2 * math.pi / 3 - _kGapAngle).animate(_secondArchInterval).value,
+                        endAngle: Tween<double>(begin: _kMinAngle, end: 2 * math.pi / 3 - _kGapAngle).animate(secondArchInterval).value,
                       ),
                       Arc.draw(
                         color: color,
                         size: size,
                         strokeWidth: ringWidth,
                         startAngle: -math.pi / 6,
-                        endAngle: Tween<double>(begin: _kMinAngle, end: 2 * math.pi / 3 - _kGapAngle).animate(_secondArchInterval).value,
+                        endAngle: Tween<double>(begin: _kMinAngle, end: 2 * math.pi / 3 - _kGapAngle).animate(secondArchInterval).value,
                       ),
                     ],
                   ),

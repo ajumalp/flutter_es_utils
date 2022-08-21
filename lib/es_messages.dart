@@ -142,8 +142,8 @@ class ESMessage {
                 if (!multiSelect) return null;
                 return [
                   TextButton(
-                    child: const Text('CANCEL'),
                     onPressed: Navigator.of(context).pop,
+                    child: const Text('CANCEL'),
                   ),
                   TextButton(
                     child: Text(okBtnText),

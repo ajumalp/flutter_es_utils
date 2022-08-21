@@ -19,10 +19,10 @@ export 'es_wrapper.dart';
 
 class ESUtils {
   static String getRandomString(final int length) {
-    const _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
-    final Random _rnd = Random.secure();
+    const chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+    final Random rnd = Random.secure();
     return String.fromCharCodes(
-      Iterable.generate(length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))),
+      Iterable.generate(length, (_) => chars.codeUnitAt(rnd.nextInt(chars.length))),
     );
   }
 
