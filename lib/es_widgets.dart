@@ -132,14 +132,16 @@ class ESLinkText extends RichText {
     String? url,
     Function()? onTap,
     double fontSize = 16,
+    Color textColor = Colors.lightBlue,
+    Color prefixTextColor = Colors.white,
   }) : super(
           key: key,
           text: TextSpan(
             children: [
-              if (prefixText != '') TextSpan(text: prefixText, style: TextStyle(color: Colors.white, fontSize: fontSize)),
+              if (prefixText != '') TextSpan(text: prefixText, style: TextStyle(color: prefixTextColor, fontSize: fontSize)),
               TextSpan(
                 text: text,
-                style: TextStyle(color: Colors.lightBlue, fontSize: fontSize, fontWeight: FontWeight.bold),
+                style: TextStyle(color: textColor, fontSize: fontSize, fontWeight: FontWeight.bold),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
                     if (url != null) {
