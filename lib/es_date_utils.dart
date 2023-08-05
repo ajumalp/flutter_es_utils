@@ -5,8 +5,6 @@
  * Date created: 09-May-2021
  */
 
-library es_utils;
-
 import 'package:intl/intl.dart';
 
 abstract class ESDateTimeUtils {
