@@ -72,7 +72,13 @@ class ESButton extends StatelessWidget {
   /// [onPressed] is the event triggerd when button is pressed/clicked
   ///
   /// [width] to set width of the button. Default to full width of parent
-  const ESButton(this.caption, {Key? key, required this.onPressed, this.buttonColor, this.width = double.infinity}) : super(key: key);
+  const ESButton(
+    this.caption, {
+    Key? key,
+    this.buttonColor,
+    required this.onPressed,
+    this.width = double.infinity,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -82,6 +88,7 @@ class ESButton extends StatelessWidget {
       width: width,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
+          backgroundColor: buttonColor,
           padding: EdgeInsets.symmetric(
             horizontal: 30,
             vertical: (varPlatform == TargetPlatform.android || varPlatform == TargetPlatform.iOS) ? 8 : 18,
