@@ -82,7 +82,6 @@ class ESButton extends StatelessWidget {
       width: width,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: buttonColor,
           padding: EdgeInsets.symmetric(
             horizontal: 30,
             vertical: (varPlatform == TargetPlatform.android || varPlatform == TargetPlatform.iOS) ? 8 : 18,
