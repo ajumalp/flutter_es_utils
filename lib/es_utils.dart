@@ -63,6 +63,7 @@ class ESUtils {
     final bool hideCloseButton = false,
     List<Widget>? actions,
     final Color? backgroundColor,
+    final Color? appBarColor,
   }) {
     final bool isSmallScreen = ESPlatform.isSmallScreen(context);
 
@@ -85,6 +86,7 @@ class ESUtils {
         leading: isSmallScreen || iconData == null ? null : Icon(iconData),
         titleSpacing: 0,
         actions: actions,
+        backgroundColor: appBarColor,
       ),
       body: body,
       persistentFooterButtons: footerButtons,
