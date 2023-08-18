@@ -43,7 +43,7 @@ class ESUtils {
         context,
         barrierDismissible: barrierDismissible,
         content: ClipRRect(
-          borderRadius: ESPlatform.isSmallScreen(context) ? null : BorderRadius.circular(10),
+          borderRadius: ESPlatform.isSmallScreen(context) ? BorderRadius.zero : BorderRadius.circular(10),
           clipBehavior: Clip.antiAlias,
           child: newScreen,
         ),
