@@ -56,9 +56,11 @@ class ESUtils {
 
   static Scaffold scaffold(
     BuildContext context, {
-    required String title,
     Widget? body,
+    String? subTitle,
+    Widget? trailing,
     IconData? iconData,
+    required String title,
     List<Widget>? footerButtons,
     final bool hideCloseButton = false,
     List<Widget>? actions,
@@ -81,12 +83,15 @@ class ESUtils {
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
-        title: Text(title),
-        automaticallyImplyLeading: isSmallScreen || iconData == null,
-        leading: isSmallScreen || iconData == null ? null : Icon(iconData),
         titleSpacing: 0,
         actions: actions,
         backgroundColor: appBarColor,
+        automaticallyImplyLeading: isSmallScreen || iconData == null,
+        leading: isSmallScreen || iconData == null ? null : Icon(iconData),
+        title: () {
+          if (subTitle == null && trailing == null) return Text(title);
+          return ListTile(title: Text(title), subtitle: subTitle == null ? null : Text(subTitle), trailing: trailing);
+        }(),
       ),
       body: body,
       persistentFooterButtons: footerButtons,
