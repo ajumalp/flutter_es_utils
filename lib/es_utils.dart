@@ -58,7 +58,7 @@ class ESUtils {
     BuildContext context, {
     Widget? body,
     String? subTitle,
-    Widget? trailing,
+    Widget? leading,
     IconData? iconData,
     required String title,
     List<Widget>? footerButtons,
@@ -66,6 +66,7 @@ class ESUtils {
     List<Widget>? actions,
     final Color? backgroundColor,
     final Color? appBarColor,
+    final Color? titleColor,
   }) {
     final bool isSmallScreen = ESPlatform.isSmallScreen(context);
 
@@ -89,8 +90,13 @@ class ESUtils {
         automaticallyImplyLeading: isSmallScreen || iconData == null,
         leading: isSmallScreen || iconData == null ? null : Icon(iconData),
         title: () {
-          if (subTitle == null && trailing == null) return Text(title);
-          return ListTile(title: Text(title), subtitle: subTitle == null ? null : Text(subTitle), trailing: trailing);
+          if (subTitle == null && leading == null) return Text(title);
+          return ListTile(
+            title: Text(title),
+            leading: leading,
+            textColor: titleColor,
+            subtitle: subTitle == null ? null : Text(subTitle),
+          );
         }(),
       ),
       body: body,
