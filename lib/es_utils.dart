@@ -88,7 +88,7 @@ class ESUtils {
         actions: actions,
         backgroundColor: appBarColor,
         automaticallyImplyLeading: isSmallScreen || iconData == null,
-        leading: isSmallScreen || iconData == null ? const Icon(Icons.arrow_back_ios_new) : Icon(iconData),
+        leading: isSmallScreen || iconData == null ? null : Icon(iconData),
         title: () {
           if (subTitle == null && leading == null) return Text(title);
           return ListTile(
