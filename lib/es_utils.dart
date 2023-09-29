@@ -67,6 +67,7 @@ class ESUtils {
     final Color? backgroundColor,
     final Color? appBarColor,
     final Color? titleColor,
+    final double toolbarHeight = kToolbarHeight,
   }) {
     final bool isSmallScreen = ESPlatform.isSmallScreen(context);
 
@@ -86,9 +87,10 @@ class ESUtils {
       appBar: AppBar(
         titleSpacing: 0,
         actions: actions,
+        toolbarHeight: toolbarHeight,
         backgroundColor: appBarColor,
         automaticallyImplyLeading: isSmallScreen || iconData == null,
-        leading: isSmallScreen || iconData == null ? null : Icon(iconData),
+        leading: isSmallScreen || iconData == null ? IconButton(icon: const Icon(Icons.arrow_back_ios_new), onPressed: () => Navigator.pop(context)) : Icon(iconData),
         title: () {
           if (subTitle == null && leading == null) return Text(title);
           return ListTile(
