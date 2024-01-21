@@ -29,7 +29,7 @@ class ESUtils {
 
   static Future<String> readFile(final String url) => httpClient.read(Uri.parse(url));
 
-  static pushScreen({
+  static Future pushScreen({
     required BuildContext context,
     required Widget newScreen,
     bool popRequired = true,
@@ -39,7 +39,7 @@ class ESUtils {
   }) {
     if (popRequired) Navigator.of(context).pop();
     if (showMiniWindow) {
-      ESMessage.showModalDialog(
+      return ESMessage.showModalDialog(
         context,
         barrierDismissible: barrierDismissible,
         content: ClipRRect(
@@ -50,7 +50,7 @@ class ESUtils {
         constraints: constraints,
       );
     } else {
-      Navigator.of(context).push(MaterialPageRoute(builder: (_) => newScreen));
+      return Navigator.of(context).push(MaterialPageRoute(builder: (_) => newScreen));
     }
   }
 
