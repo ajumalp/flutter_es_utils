@@ -32,6 +32,8 @@ class ESTextField extends StatefulWidget {
   final String? helperText;
   final String? counterText;
   final String? errorText;
+  final bool filled;
+  final Color? fillColor;
   final ESFieldDecoration? decoration;
   final TextEditingController controller;
   final Function()? onEditingComplete;
@@ -42,7 +44,7 @@ class ESTextField extends StatefulWidget {
     Key? key,
     required this.controller,
     this.focusNode,
-    this.margin = const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+    this.margin = const EdgeInsets.symmetric(horizontal: 0, vertical: 5),
     this.obscureText = false,
     this.autofillHints,
     this.enabled = true,
@@ -53,6 +55,8 @@ class ESTextField extends StatefulWidget {
     this.helperText,
     this.counterText,
     this.errorText,
+    this.filled = true,
+    this.fillColor = Colors.white,
     this.decoration,
     this.iconData,
     this.maxLines = 1,
@@ -82,7 +86,7 @@ class _ESTextFieldState extends State<ESTextField> {
   Widget build(BuildContext context) {
     return Padding(
       padding: widget.margin,
-      child: TextField(
+      child: TextFormField(
         key: widget.key,
         focusNode: widget.focusNode,
         controller: widget.controller,
@@ -117,6 +121,8 @@ class _ESTextFieldState extends State<ESTextField> {
           iconData: widget.iconData,
           suffixIconDataList: widget.suffixIconDataList ?? const [Icons.cancel],
           suffixIconTooltips: widget.suffixIconTooltips,
+          filled: widget.filled,
+          fillColor: widget.fillColor,
           labelText: widget.caption,
           prefixText: widget.prefixText,
           suffixText: widget.suffixText,
@@ -153,8 +159,10 @@ class ESFieldDecoration extends InputDecoration {
     final String? suffixText,
     final String? helperText,
     final String? counterText,
+    final bool filled = true,
     final bool enabled = true,
     final bool showLabelText = true,
+    final Color? fillColor = Colors.white,
     final InputBorder border = const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
     this.iconData,
     this.onPrefixTap,
@@ -163,8 +171,9 @@ class ESFieldDecoration extends InputDecoration {
     this.suffixIconDataList = const [Icons.cancel],
   }) : super(
           isDense: true,
-          filled: true,
-          fillColor: Colors.white,
+          border: border,
+          filled: filled,
+          fillColor: fillColor,
           hintStyle: const TextStyle(color: Colors.grey),
           labelStyle: const TextStyle(color: Colors.black),
           hintText: prefixText != null ? '' : labelText,
