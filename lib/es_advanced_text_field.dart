@@ -29,6 +29,7 @@ class ESTextField extends StatefulWidget {
   final Function()? onTap;
   final TextInputType? keyboardType;
   final List<TextInputFormatter>? inputFormatters;
+  final bool showLabelText;
   final String? helperText;
   final String? counterText;
   final String? errorText;
@@ -52,6 +53,7 @@ class ESTextField extends StatefulWidget {
     this.readOnly,
     this.prefixText,
     this.suffixText,
+    this.showLabelText = true,
     this.helperText,
     this.counterText,
     this.errorText,
@@ -124,6 +126,7 @@ class _ESTextFieldState extends State<ESTextField> {
           filled: widget.filled,
           fillColor: widget.fillColor,
           labelText: widget.caption,
+          showLabelText: widget.showLabelText,
           prefixText: widget.prefixText,
           suffixText: widget.suffixText,
           helperText: widget.helperText,
@@ -161,7 +164,7 @@ class ESFieldDecoration extends InputDecoration {
     final String? counterText,
     final bool filled = true,
     final bool enabled = true,
-    final bool showLabelText = true,
+    final bool showLabelText = false,
     final Color? fillColor = Colors.white,
     final InputBorder border = const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
     this.iconData,
@@ -174,10 +177,12 @@ class ESFieldDecoration extends InputDecoration {
           border: border,
           filled: filled,
           fillColor: fillColor,
+          helperText: showLabelText ? helperText : null,
+          counterText: counterText,
           hintStyle: const TextStyle(color: Colors.grey),
           labelStyle: const TextStyle(color: Colors.black),
           hintText: prefixText != null ? '' : labelText,
-          labelText: showLabelText ? labelText : null,
+          labelText: showLabelText ? labelText : helperText,
         );
 
   @override
