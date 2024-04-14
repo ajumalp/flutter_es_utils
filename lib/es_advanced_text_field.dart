@@ -8,7 +8,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class ICATextField extends StatefulWidget {
+class ESTextField extends StatefulWidget {
   final String caption;
   final FocusNode? focusNode;
   final EdgeInsetsGeometry margin;
@@ -37,7 +37,7 @@ class ICATextField extends StatefulWidget {
   final Function()? onEditingComplete;
   final TextInputAction textInputAction;
 
-  const ICATextField(
+  const ESTextField(
     this.caption, {
     Key? key,
     required this.controller,
@@ -69,10 +69,10 @@ class ICATextField extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  createState() => _ICATextFieldState();
+  createState() => _ESTextFieldState();
 }
 
-class _ICATextFieldState extends State<ICATextField> {
+class _ESTextFieldState extends State<ESTextField> {
   bool _isSuffixTap = false;
 
   @override
