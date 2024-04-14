@@ -370,11 +370,11 @@ class ESMessage {
       barrierDismissible: barrierDismissible,
       useSafeArea: true,
       barrierColor: ESTheme.barrierColor(context),
-      builder: (BuildContext context) => RawKeyboardListener(
+      builder: (BuildContext context) => KeyboardListener(
         autofocus: true,
         focusNode: FocusNode(),
-        onKey: (event) {
-          if (event.isKeyPressed(LogicalKeyboardKey.enter) || event.isKeyPressed(LogicalKeyboardKey.numpadEnter)) {
+        onKeyEvent: (event) {
+          if (HardwareKeyboard.instance.isLogicalKeyPressed(LogicalKeyboardKey.enter) || HardwareKeyboard.instance.isLogicalKeyPressed(LogicalKeyboardKey.numpadEnter)) {
             if (autoPop) Navigator.pop(context);
             if (onPressed != null) onPressed(1);
           }

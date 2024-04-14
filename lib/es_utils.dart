@@ -17,6 +17,7 @@ export 'es_messages.dart';
 export 'es_widgets.dart';
 export 'es_wrapper.dart';
 export 'es_date_utils.dart';
+export 'es_advanced_text_field.dart';
 
 class ESUtils {
   static String getRandomString(final int length) {
