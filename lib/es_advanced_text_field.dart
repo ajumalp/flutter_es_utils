@@ -14,6 +14,7 @@ class ESTextField extends StatefulWidget {
   final EdgeInsetsGeometry margin;
   final bool obscureText;
   final Iterable<String>? autofillHints;
+  final bool isDense;
   final bool enabled;
   final bool autofocus;
   final bool? readOnly;
@@ -44,6 +45,7 @@ class ESTextField extends StatefulWidget {
     this.caption, {
     Key? key,
     required this.controller,
+    this.isDense = true,
     this.focusNode,
     this.margin = const EdgeInsets.symmetric(horizontal: 0, vertical: 5),
     this.obscureText = false,
@@ -119,6 +121,7 @@ class _ESTextFieldState extends State<ESTextField> {
   ESFieldDecoration get _fieldDecoration {
     return widget.decoration ??
         ESFieldDecoration(
+          isDense: widget.isDense,
           enabled: widget.enabled,
           iconData: widget.iconData,
           suffixIconDataList: widget.suffixIconDataList ?? const [Icons.cancel],
@@ -164,6 +167,7 @@ class ESFieldDecoration extends InputDecoration {
     final String? counterText,
     final bool filled = true,
     final bool enabled = true,
+    final bool isDense = true,
     final bool showLabelText = false,
     final Color? fillColor = Colors.white,
     final InputBorder border = const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
@@ -173,12 +177,13 @@ class ESFieldDecoration extends InputDecoration {
     this.suffixIconTooltips,
     this.suffixIconDataList = const [Icons.cancel],
   }) : super(
-          isDense: true,
+          isDense: isDense,
           border: border,
           filled: filled,
           fillColor: fillColor,
-          helperText: showLabelText ? helperText : null,
           counterText: counterText,
+          contentPadding: const EdgeInsets.all(10),
+          helperText: showLabelText ? helperText : null,
           hintStyle: const TextStyle(color: Colors.grey),
           labelStyle: const TextStyle(color: Colors.black),
           hintText: prefixText != null ? '' : labelText,
