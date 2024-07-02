@@ -23,8 +23,9 @@ extension ESStringExtn on String {
     if (length < 1) return '';
 
     String result = '';
-    split(' ').forEach((word) => result += word.capitalizeFirstChar);
-    return result;
+    split(' ').forEach((word) => result += '${word.capitalizeFirstChar} ');
+
+    return result.trim();
   }
 }
 
