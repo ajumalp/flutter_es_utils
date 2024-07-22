@@ -27,6 +27,30 @@ extension ESStringExtn on String {
 
     return result.trim();
   }
+
+  /// To be used with Phone Number
+  /// This will split string by "-" and return country code
+  /// 91-9876543210 => 91
+  String? get countryCode {
+    final phoneDetails = split('-');
+    if (phoneDetails.length < 2) {
+      return null;
+    } else {
+      return phoneDetails.first;
+    }
+  }
+
+  /// To be used with Phone Number
+  /// This will split string by "-" and return phone number
+  /// 91-9876543210 => 9876543210
+  String? get phoneNumber {
+    final phoneDetails = split('-');
+    if (phoneDetails.isEmpty) {
+      return null;
+    } else {
+      return phoneDetails.last;
+    }
+  }
 }
 
 extension ESDoubleEx on double {
