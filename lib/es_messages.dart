@@ -158,6 +158,7 @@ class ESMessage {
                   ESButton(
                     okBtnText,
                     width: 150,
+                    buttonColor: Colors.white,
                     textColor: primaryColor,
                     onPressed: () {
                       Navigator.of(context).pop();
