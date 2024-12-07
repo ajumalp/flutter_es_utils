@@ -29,7 +29,7 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<bool> varList = [false, false, true, true, false];
+    final List<bool> varList = [false, false, true, true, false, false];
     return Scaffold(
       appBar: AppBar(
         title: const Text('ES-Utils Demo'),
@@ -74,13 +74,45 @@ class MyHomePage extends StatelessWidget {
                 ),
               ),
               ESButton(
+                'Show Question Dialog',
+                onPressed: () => ESMessage.showQuestionMessage(
+                  context: context,
+                  title: 'Question Dialog',
+                  message: 'Are you sure?',
+                ),
+              ),
+              ESButton(
                 'Show Confirm Dialog',
                 onPressed: () => ESMessage.showConfirmDialog(
                   context: context,
                   title: 'Confirm Dialog',
                   message: 'Are you sure?',
-                  buttonLeft: 'OK',
-                  buttonRight: 'Cancel',
+                  primaryButton: 'OK',
+                  // buttonRight: 'Cancel',
+                ),
+              ),
+              ESButton(
+                'Show Info Dialog',
+                onPressed: () => ESMessage.showInfoMessage(
+                  context,
+                  title: 'Info Dialog',
+                  message: 'Are you sure?',
+                ),
+              ),
+              ESButton(
+                'Show Warning Dialog',
+                onPressed: () => ESMessage.showWarningMessage(
+                  context,
+                  title: 'Warning Dialog',
+                  message: 'Are you sure?',
+                ),
+              ),
+              ESButton(
+                'Show Error Dialog',
+                onPressed: () => ESMessage.showErrorMessage(
+                  context,
+                  title: 'Error Dialog',
+                  message: 'Are you sure?',
                 ),
               ),
               ESButton(
@@ -91,7 +123,7 @@ class MyHomePage extends StatelessWidget {
                   selectedValue: 20,
                   title: 'Row Count',
                   multiSelectValues: varList,
-                  options: const [10, 20, 30, 50, 100],
+                  options: const [10, 20, 30, 50, 100, 120],
                 ),
               ),
             ],

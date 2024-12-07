@@ -80,16 +80,19 @@ class ESMessage {
     required final BuildContext context,
     required final List options,
     final String title = '',
+    final String? subTitle,
     final String prefixText = '',
     final String suffixText = '',
-    final Function(int, dynamic)? onSelection,
     final selectedValue,
+    Color? primaryColor,
+    final Function(int, dynamic)? onSelection,
     final List<bool> multiSelectValues = const [],
     final String okBtnText = 'Submit',
     final Function(List<bool>)? onSubmit,
     bool barrierDismissible = true,
     BoxConstraints constraints = const BoxConstraints(maxWidth: 850, maxHeight: 750),
   }) {
+    primaryColor = primaryColor ?? Theme.of(context).primaryColor;
     final bool multiSelect = multiSelectValues.length == options.length;
 
     return showDialog(
@@ -99,10 +102,15 @@ class ESMessage {
         return StatefulBuilder(
           builder: (context, setState) {
             return AlertDialog(
-              contentPadding: const EdgeInsets.all(6.0),
+              contentPadding: const EdgeInsets.all(0),
+              titlePadding: const EdgeInsets.only(top: 15, left: 15, bottom: 0),
+              actionsPadding: const EdgeInsets.only(top: 0, left: 10, right: 10, bottom: 10),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
               title: title == '' ? null : Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
               content: Container(
                 width: 300,
+                decoration: BoxDecoration(border: Border.all(color: Colors.blueGrey[100] ?? Colors.blueGrey)),
+                margin: multiSelect ? const EdgeInsets.symmetric(vertical: 10) : const EdgeInsets.only(top: 10),
                 constraints: constraints,
                 child: ListView.builder(
                   shrinkWrap: true,
@@ -110,9 +118,11 @@ class ESMessage {
                   itemBuilder: (BuildContext context, int index) {
                     final String soption = '$prefixText ${options[index].toString()} $suffixText'.trim();
                     return ListTile(
+                      tileColor: index % 2 == 0 ? null : primaryColor?.withOpacity(0.05),
                       leading: () {
                         if (multiSelect) {
                           return Checkbox(
+                            activeColor: primaryColor,
                             value: multiSelectValues[index],
                             onChanged: (value) {
                               multiSelectValues[index] = value ?? false;
@@ -132,6 +142,9 @@ class ESMessage {
                       onTap: () {
                         if (onSelection != null) {
                           onSelection(index, options[index]);
+                        } else if (multiSelect) {
+                          multiSelectValues[index] = !multiSelectValues[index];
+                          setState(() {});
                         }
                       },
                     );
@@ -141,12 +154,11 @@ class ESMessage {
               actions: () {
                 if (!multiSelect) return null;
                 return [
-                  TextButton(
-                    onPressed: Navigator.of(context).pop,
-                    child: const Text('CANCEL'),
-                  ),
-                  TextButton(
-                    child: Text(okBtnText),
+                  ESButton('CANCEL', buttonColor: primaryColor, textColor: Colors.white, onPressed: Navigator.of(context).pop, width: 150),
+                  ESButton(
+                    okBtnText,
+                    width: 150,
+                    textColor: primaryColor,
                     onPressed: () {
                       Navigator.of(context).pop();
                       if (onSubmit != null) onSubmit(multiSelectValues);
@@ -267,6 +279,29 @@ class ESMessage {
   }
 
   /// Shwos a dialog with single button. Default title will be 'Error'.
+  static showWarningMessage(
+    BuildContext context, {
+    String title = 'Warning',
+    String? message,
+    bool barrierDismissible = true,
+    Function()? onPressed,
+  }) {
+    return showConfirmDialog(
+      context: context,
+      title: title,
+      message: message,
+      primaryButton: 'OK',
+      iconColor: Colors.amber,
+      primaryButtonColor: Colors.amber,
+      iconData: Icons.warning_amber,
+      barrierDismissible: barrierDismissible,
+      onPressed: (aBtnIndex) {
+        if (onPressed != null) return onPressed();
+      },
+    );
+  }
+
+  /// Shwos a dialog with single button. Default title will be 'Error'.
   static showErrorMessage(
     BuildContext context, {
     String title = 'Error',
@@ -278,7 +313,10 @@ class ESMessage {
       context: context,
       title: title,
       message: message,
-      buttonLeft: 'OK',
+      primaryButton: 'OK',
+      iconColor: Colors.red,
+      primaryButtonColor: Colors.red,
+      iconData: Icons.report_outlined,
       barrierDismissible: barrierDismissible,
       onPressed: (aBtnIndex) {
         if (onPressed != null) return onPressed();
@@ -298,7 +336,10 @@ class ESMessage {
       context: context,
       title: title,
       message: message,
-      buttonLeft: 'OK',
+      primaryButton: 'OK',
+      iconData: Icons.info_outline,
+      iconColor: Colors.green,
+      primaryButtonColor: Colors.green,
       barrierDismissible: barrierDismissible,
       onPressed: (aBtnIndex) {
         if (onPressed != null) onPressed();
@@ -314,16 +355,22 @@ class ESMessage {
     final bool autoPop = true,
     final Function? onAccept,
     final Function? onReject,
+    final Color primaryButtonColor = Colors.red,
+    final Color secondaryButtonColor = Colors.green,
     final bool barrierDismissible = true,
   }) {
     return showConfirmDialog(
       context: context,
-      buttonLeft: 'No',
-      buttonRight: 'Yes',
+      primaryButton: 'No',
+      secondaryButton: 'Yes',
       title: title,
       message: message,
       content: content,
       autoPop: autoPop,
+      primaryButtonColor: primaryButtonColor,
+      secondaryButtonColor: secondaryButtonColor,
+      iconData: Icons.live_help_outlined,
+      iconColor: primaryButtonColor,
       onPressed: (index) {
         if (index == 1 && onAccept != null) {
           onAccept();
@@ -344,10 +391,10 @@ class ESMessage {
   /// [content] can be used to override [message].
   /// If [content] is set, [message] won't be used
   ///
-  /// [buttonLeft] this is the primary button. This cannot be null.
+  /// [primaryButton] this is the primary button. This cannot be null.
   /// If you have multiple buttons, then this will be displayed on left side
   ///
-  /// [buttonRight] an optional button to be displayed on right side
+  /// [secondaryButton] an optional button to be displayed on right side
   ///
   /// [autoPop] default to true. If false, `Navigator.pop(context)` won't be called
   ///
@@ -358,12 +405,19 @@ class ESMessage {
     final String? title,
     final String? message,
     final Widget? content,
-    required final String buttonLeft,
-    final String? buttonRight,
+    Color? primaryColor,
+    required final String primaryButton,
+    final Color? primaryButtonColor,
+    final String? secondaryButton,
+    final Color? secondaryButtonColor,
     final bool autoPop = true,
+    final IconData? iconData,
+    final Color? iconColor,
     final Function(int)? onPressed,
     final bool barrierDismissible = true,
   }) {
+    primaryColor = primaryColor ?? Theme.of(context).primaryColor;
+
     return showDialog(
       context: context,
       useRootNavigator: false,
@@ -379,34 +433,46 @@ class ESMessage {
             if (onPressed != null) onPressed(1);
           }
         },
-        child: CupertinoAlertDialog(
+        child: AlertDialog(
+          backgroundColor: Colors.white,
+          iconPadding: iconData == null ? null : const EdgeInsets.only(top: 15),
+          icon: iconData == null ? null : Icon(iconData, color: iconColor ?? primaryColor, size: 60),
+          titlePadding: const EdgeInsets.only(top: 15, left: 15, bottom: 0),
+          actionsPadding: const EdgeInsets.only(top: 0, left: 10, right: 10, bottom: 10),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           title: Column(
             children: <Widget>[
-              Text(title ?? ''),
+              Text(title ?? '', style: const TextStyle(fontWeight: FontWeight.bold)),
               const SizedBox(height: 10),
             ],
           ),
-          content: content ?? Text(message ?? ''),
+          content: content ?? Text(message ?? '', style: const TextStyle(fontWeight: FontWeight.bold)),
           actions: [
             Tooltip(
               message: '[Esc]',
-              child: CupertinoDialogAction(
+              child: ESButton(
+                primaryButton,
+                width: secondaryButton == null ? double.infinity : 130,
+                textColor: Colors.white,
+                buttonColor: primaryButtonColor ?? primaryColor,
                 onPressed: () {
                   if (autoPop) Navigator.pop(context);
                   if (onPressed != null) onPressed(0);
                 },
-                child: Text(buttonLeft, style: TextStyle(color: ESTheme.textColor(context))),
               ),
             ),
-            if (buttonRight != null)
+            if (secondaryButton != null)
               Tooltip(
                 message: '[Press Enter]',
-                child: CupertinoDialogAction(
+                child: ESButton(
+                  secondaryButton,
+                  width: 130,
+                  textColor: Colors.white,
+                  buttonColor: secondaryButtonColor ?? primaryColor,
                   onPressed: () {
                     if (autoPop) Navigator.pop(context);
                     if (onPressed != null) onPressed(1);
                   },
-                  child: Text(buttonRight, style: TextStyle(fontWeight: FontWeight.w600, color: ESTheme.textColor(context))),
                 ),
               ),
           ],

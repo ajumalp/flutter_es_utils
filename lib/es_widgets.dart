@@ -57,6 +57,7 @@ abstract class ESPlatform {
 
 class ESButton extends StatelessWidget {
   final String caption;
+  final Color? textColor;
   final Color? buttonColor;
 
   /// [onPressed] is the event triggerd when button is pressed/clicked
@@ -75,6 +76,7 @@ class ESButton extends StatelessWidget {
   const ESButton(
     this.caption, {
     Key? key,
+    this.textColor,
     this.buttonColor,
     required this.onPressed,
     this.width = double.infinity,
@@ -91,11 +93,11 @@ class ESButton extends StatelessWidget {
           backgroundColor: buttonColor,
           padding: EdgeInsets.symmetric(
             horizontal: 30,
-            vertical: (varPlatform == TargetPlatform.android || varPlatform == TargetPlatform.iOS) ? 8 : 18,
+            vertical: (varPlatform == TargetPlatform.android || varPlatform == TargetPlatform.iOS) ? 8 : 15,
           ),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         ),
-        child: Text(caption, style: const TextStyle(fontSize: 18)),
+        child: Text(caption, style: TextStyle(fontSize: 18, color: textColor)),
         onPressed: () => onPressed(),
       ),
     );
