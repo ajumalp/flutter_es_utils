@@ -90,12 +90,13 @@ class ESButton extends StatelessWidget {
       width: width,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
+          elevation: 1,
           backgroundColor: buttonColor,
           padding: EdgeInsets.symmetric(
             horizontal: 30,
             vertical: (varPlatform == TargetPlatform.android || varPlatform == TargetPlatform.iOS) ? 8 : 15,
           ),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
         ),
         child: Text(caption, style: TextStyle(fontSize: 18, color: textColor)),
         onPressed: () => onPressed(),

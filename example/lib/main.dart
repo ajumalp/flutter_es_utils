@@ -65,6 +65,7 @@ class MyHomePage extends StatelessWidget {
                 onPressed: () => ESMessage.showInputDialog(
                   context: context,
                   title: 'Title',
+                  message: 'Test Message',
                   defaultValue: 'Default Value',
                   hitText: 'Enter Value',
                   onSubmit: (TextEditingController controller) => ESMessage.showInfoMessage(
@@ -86,7 +87,7 @@ class MyHomePage extends StatelessWidget {
                 onPressed: () => ESMessage.showConfirmDialog(
                   context: context,
                   title: 'Confirm Dialog',
-                  message: 'Are you sure?',
+                  message: 'Are you sure you want to remove all the existing items ?',
                   primaryButton: 'OK',
                   // buttonRight: 'Cancel',
                 ),

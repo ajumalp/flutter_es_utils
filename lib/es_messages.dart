@@ -197,6 +197,7 @@ class ESMessage {
     ESMessage.customDialog(
       context: context,
       title: title,
+      iconData: Icons.quiz_outlined,
       onSubmit: (context) {
         if (onSubmit != null) onSubmit(controller);
       },
@@ -213,7 +214,7 @@ class ESMessage {
               child: TextField(
                 decoration: InputDecoration(
                   isDense: true,
-                  border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
+                  border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
                   filled: false,
                   hintStyle: const TextStyle(color: Colors.grey),
                   hintText: hitText ?? '',
@@ -247,33 +248,51 @@ class ESMessage {
     final Function(BuildContext context)? onSubmit,
     final Function()? onCancel,
     final String okBtnText = 'SUBMIT',
+    final IconData? iconData,
+    final Color? iconColor,
+    Color? primaryColor,
     final bool hideCancelButton = false,
   }) {
+    primaryColor = primaryColor ?? Theme.of(context).primaryColor;
+
     return showDialog<T>(
       context: context,
       barrierDismissible: barrierDismissible,
       builder: (BuildContext context) => AlertDialog(
+        backgroundColor: Colors.white,
+        iconPadding: iconData == null ? null : const EdgeInsets.only(top: 15),
+        icon: iconData == null ? null : Icon(iconData, color: iconColor ?? primaryColor, size: 60),
+        titlePadding: const EdgeInsets.only(top: 15, left: 15, bottom: 0),
+        actionsPadding: const EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 10),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         contentPadding: const EdgeInsets.all(6.0),
-        titlePadding: const EdgeInsets.only(top: 20, bottom: 10, right: 15, left: 15),
         title: Text(title ?? '', style: const TextStyle(fontWeight: FontWeight.bold)),
         content: content,
         actionsOverflowDirection: VerticalDirection.down,
         actions: [
-          if (!hideCancelButton)
-            TextButton(
-              child: const Text('CANCEL'),
+          ESUtils.createControlsInRow([
+            if (!hideCancelButton)
+              ESButton(
+                'CANCEL',
+                width: double.infinity,
+                textColor: Colors.white,
+                buttonColor: primaryColor,
+                onPressed: () {
+                  Navigator.pop(context);
+                  if (onCancel != null) onCancel();
+                },
+              ),
+            ESButton(
+              okBtnText,
+              width: double.infinity,
+              textColor: primaryColor,
+              buttonColor: Colors.white,
               onPressed: () {
-                Navigator.of(context).pop();
-                if (onCancel != null) onCancel();
+                if (autoPop) Navigator.of(context).pop();
+                if (onSubmit != null) onSubmit(context);
               },
             ),
-          TextButton(
-            child: Text(okBtnText),
-            onPressed: () {
-              if (autoPop) Navigator.of(context).pop();
-              if (onSubmit != null) onSubmit(context);
-            },
-          ),
+          ]),
         ],
       ),
     );
@@ -449,33 +468,35 @@ class ESMessage {
           ),
           content: content ?? Text(message ?? '', style: const TextStyle(fontWeight: FontWeight.bold)),
           actions: [
-            Tooltip(
-              message: '[Esc]',
-              child: ESButton(
-                primaryButton,
-                width: secondaryButton == null ? double.infinity : 130,
-                textColor: Colors.white,
-                buttonColor: primaryButtonColor ?? primaryColor,
-                onPressed: () {
-                  if (autoPop) Navigator.pop(context);
-                  if (onPressed != null) onPressed(0);
-                },
-              ),
-            ),
-            if (secondaryButton != null)
+            ESUtils.createControlsInRow([
               Tooltip(
-                message: '[Press Enter]',
+                message: '[Esc]',
                 child: ESButton(
-                  secondaryButton,
-                  width: 130,
+                  primaryButton,
+                  width: double.infinity,
                   textColor: Colors.white,
-                  buttonColor: secondaryButtonColor ?? primaryColor,
+                  buttonColor: primaryButtonColor ?? primaryColor,
                   onPressed: () {
                     if (autoPop) Navigator.pop(context);
-                    if (onPressed != null) onPressed(1);
+                    if (onPressed != null) onPressed(0);
                   },
                 ),
               ),
+              if (secondaryButton != null)
+                Tooltip(
+                  message: '[Press Enter]',
+                  child: ESButton(
+                    secondaryButton,
+                    width: double.infinity,
+                    textColor: Colors.white,
+                    buttonColor: secondaryButtonColor ?? primaryColor,
+                    onPressed: () {
+                      if (autoPop) Navigator.pop(context);
+                      if (onPressed != null) onPressed(1);
+                    },
+                  ),
+                ),
+            ]),
           ],
         ),
       ),
