@@ -118,7 +118,7 @@ class ESMessage {
                   itemBuilder: (BuildContext context, int index) {
                     final String soption = '$prefixText ${options[index].toString()} $suffixText'.trim();
                     return ListTile(
-                      tileColor: index % 2 == 0 ? null : primaryColor?.withOpacity(0.05),
+                      tileColor: index % 2 == 0 ? null : primaryColor?.withValues(alpha: 0.05),
                       leading: () {
                         if (multiSelect) {
                           return Checkbox(
